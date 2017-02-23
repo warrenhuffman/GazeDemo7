@@ -122,7 +122,7 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
 
 - (void)teardownAVCapture {
   [videoDataOutput release];
-  if (videoDataOutputQueue) dispatch_release(videoDataOutputQueue);
+  if (videoDataOutputQueue) //dispatch_release(videoDataOutputQueue);
   [stillImageOutput removeObserver:self forKeyPath:@"isCapturingStillImage"];
   [stillImageOutput release];
   [previewLayer removeFromSuperlayer];
@@ -133,7 +133,7 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-  if (context == AVCaptureStillImageIsCapturingStillImageContext) {
+  /*if (context == AVCaptureStillImageIsCapturingStillImageContext) {
     BOOL isCapturingStillImage =
         [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
 
@@ -159,7 +159,7 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
             flashView = nil;
           }];
     }
-  }
+  }*/
 }
 
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:
@@ -339,6 +339,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       });
     }
   }
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     NSLog(@"runCNN time: %f", 1000.0*(CACurrentMediaTime()-t));
 }
 
@@ -556,7 +557,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                         width:(float)width
                        height:(float)height
                     alignment:(NSString *)alignment {
-  NSString *const font = @"Menlo-Regular";
+    
   const float fontSize = 20.0f;
 
   const float marginSizeX = 5.0f;
@@ -582,7 +583,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   [layer setFrame:textBounds];
   [layer setAlignmentMode:alignment];
   [layer setWrapped:YES];
-  [layer setFont:font];
+  layer.font = (__bridge CFTypeRef)@"AmericanTypewriter-CondensedLight";
   [layer setFontSize:fontSize];
   layer.contentsScale = [[UIScreen mainScreen] scale];
   [layer setString:text];
