@@ -105,7 +105,6 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
   [rootLayer addSublayer:previewLayer];
   [session startRunning];
 
-  [session release];
   if (error) {
     UIAlertView *alertView = [[UIAlertView alloc]
             initWithTitle:[NSString stringWithFormat:@"Failed with error %d",
@@ -115,18 +114,14 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
         cancelButtonTitle:@"Dismiss"
         otherButtonTitles:nil];
     [alertView show];
-    [alertView release];
     [self teardownAVCapture];
   }
 }
 
 - (void)teardownAVCapture {
-  [videoDataOutput release];
   if (videoDataOutputQueue) //dispatch_release(videoDataOutputQueue);
   [stillImageOutput removeObserver:self forKeyPath:@"isCapturingStillImage"];
-  [stillImageOutput release];
   [previewLayer removeFromSuperlayer];
-  [previewLayer release];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -194,7 +189,6 @@ static const NSString *AVCaptureStillImageIsCapturingStillImageContext =
               }
               completion:^(BOOL finished) {
                 [flashView removeFromSuperview];
-                [flashView release];
                 flashView = nil;
               }];
         }];
@@ -345,8 +339,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)dealloc {
   [self teardownAVCapture];
-  [square release];
-  [super dealloc];
 }
 
 // use front/back camera
@@ -380,7 +372,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  square = [[UIImage imageNamed:@"squarePNG"] retain];
+  square = [UIImage imageNamed:@"squarePNG"];
   synth = [[AVSpeechSynthesizer alloc] init];
   labelLayers = [[NSMutableArray alloc] init];
   oldPredictionValues = [[NSMutableDictionary alloc] init];
@@ -406,7 +398,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)viewDidUnload {
   [super viewDidUnload];
-  [oldPredictionValues release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -453,7 +444,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                                   forKey:label];
     }
   }
-  [oldPredictionValues release];
   oldPredictionValues = decayedPredictionValues;
 
   for (NSString *label in newValues) {
@@ -583,7 +573,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   [layer setFrame:textBounds];
   [layer setAlignmentMode:alignment];
   [layer setWrapped:YES];
-  layer.font = (__bridge CFTypeRef)@"AmericanTypewriter-CondensedLight";
+  layer.font = (__bridge CFTypeRef)@"Menlo-Regular";
   [layer setFontSize:fontSize];
   layer.contentsScale = [[UIScreen mainScreen] scale];
   [layer setString:text];

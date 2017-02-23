@@ -481,7 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEVELOPMENT_TEAM = 3CSCB23S83;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -516,7 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEVELOPMENT_TEAM = 3CSCB23S83;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
@@ -613,6 +613,7 @@
 				A473C2601E5E35530022AF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A473C2611E5E35530022AF39 /* Build configuration list for PBXNativeTarget "GazeDemo7Tests" */ = {
 			isa = XCConfigurationList;
@@ -621,6 +622,7 @@
 				A473C2631E5E35530022AF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A473C2641E5E35530022AF39 /* Build configuration list for PBXNativeTarget "GazeDemo7UITests" */ = {
 			isa = XCConfigurationList;
@@ -629,6 +631,7 @@
 				A473C2661E5E35530022AF39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
